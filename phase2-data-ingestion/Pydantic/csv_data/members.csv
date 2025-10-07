@@ -1,0 +1,8 @@
+member_id,name,email,phone,joined_date
+301,John Smith,john.smith@example.com,1234567890,2021-06-01
+302,Jane Doe,jane..doe@@example.com,555-1234,2021-07-15
+303,Robert Brown,robert@example.com,999999999999,2020/12/12
+304,Emily Davis,emilydavis@example,9876543210,2021-01-01
+305,John Smith,john.smith@example.com,1234567890,2021-06-01   # duplicate
+306,Chris Johnson,invalid-email,444-444-4444,2022-03-18
+307,Alice Green,alice.green@example.com,(555)8887777,03-15-2020

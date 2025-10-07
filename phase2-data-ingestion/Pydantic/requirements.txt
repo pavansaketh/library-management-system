@@ -1,0 +1,12 @@
+Pydantic
+SQLAlchemy
+pymysql
+requests
+pandas
+email-validator
+
+
+
+#python data_processor.py --directory ./csv_data \
+ # --db "mysql+mysqldb://user:pass@localhost:3306/library" \
+  #--log-level INFO

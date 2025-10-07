@@ -1,0 +1,8 @@
+book_id,title,isbn,published_date,library_id
+101,The Great Book,9781234567897,2020-05-10,1
+102,Another Tale,123456789X,May 2019,2
+103,Invalid ISBN Book,12345,2018/01/01,3
+104,Missing Date Book,9783161484100,,4
+105,Formatted Wrong,978-0-306-40615-7,01-13-2021,2
+106,Duplicate ISBN,9781234567897,2017-03-22,1
+107,Empty ISBN,,2022-11-05,5

@@ -1,0 +1,8 @@
+library_id,name,email,phone,address
+1,Central Library,central@@example.com,123-456-7890,123 Main St
+2,West End Library,westend@example,987654321,45 West Ave
+3,East Side Library,east@example.com,(555)1234567,67 East Rd
+4,Central Library,central@example.com,1234567890,123 Main St   # duplicate
+5,North Library,northlib@library.org,555-5555,89 North Blvd
+6,South Branch,south_branch@example.com,444-444-4444,22 South Ln
+7,Library of Science,invalid-email,9999999999,Science Park

@@ -1,0 +1,7 @@
+pydantic
+sqlalchemy
+requests
+pymysql
+
+#python .\data_processor.py --directory . --db mysql+pymysql://root:root@localhost:3306/library --log-level INFO
+#python api_fetcher.py --author "Charles Dickens" --limit 20 --db mysql+pymysql://root:root@localhost:3306/authors
