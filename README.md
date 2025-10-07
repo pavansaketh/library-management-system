@@ -66,3 +66,4 @@ Dependencies:
   SQLAlchemy,
   Pydantic
   Django REST Framework
+
