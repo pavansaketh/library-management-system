@@ -1,0 +1,151 @@
+<mxfile host="app.diagrams.net" modified="2025-08-21T15:00:00.000Z" agent="ChatGPT ERD Generator" version="24.7.7">
+  <diagram id="library_erd" name="Library ERD">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2550" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="cell10" value="Library" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="300" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell10-body" value="PK: library_id
+name
+campus_location
+contact_email (UNIQUE)
+phone_number (UNIQUE)
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell10">
+          <mxGeometry x="0" y="30" width="300" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell11" value="Book" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="420" y="80" width="300" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell11-body" value="PK: book_id
+title
+isbn (UNIQUE)
+publication_date
+total_copies (&gt;=0)
+available_copies (&gt;=0)
+FK: library_id → Library.library_id
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell11">
+          <mxGeometry x="0" y="30" width="300" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell12" value="Author" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="820" y="60" width="300" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell12-body" value="PK: author_id
+first_name
+last_name
+birth_date
+nationality
+biography
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell12">
+          <mxGeometry x="0" y="30" width="300" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell13" value="Category" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="820" y="250" width="300" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell13-body" value="PK: category_id
+name (UNIQUE)
+description
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell13">
+          <mxGeometry x="0" y="30" width="300" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell14" value="Member" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="60" y="360" width="300" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell14-body" value="PK: member_id
+first_name
+last_name
+email (UNIQUE)
+phone (UNIQUE)
+member_type ('student'|'faculty')
+registration_date
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell14">
+          <mxGeometry x="0" y="30" width="300" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell15" value="Borrowing" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="420" y="360" width="300" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell15-body" value="PK: borrowing_id
+FK: member_id → Member.member_id
+FK: book_id → Book.book_id
+borrow_date
+due_date
+return_date
+late_fee (&gt;=0)
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell15">
+          <mxGeometry x="0" y="30" width="300" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell16" value="Review" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="420" y="560" width="300" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell16-body" value="PK: review_id
+FK: member_id → Member.member_id
+FK: book_id → Book.book_id
+rating (1..5) CHECK
+comment
+review_date
+UNIQUE (member_id, book_id)
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell16">
+          <mxGeometry x="0" y="30" width="300" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell17" value="BookAuthor" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="820" y="450" width="300" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell17-body" value="PK: (book_id, author_id)
+FK: book_id → Book.book_id
+FK: author_id → Author.author_id
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell17">
+          <mxGeometry x="0" y="30" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell18" value="BookCategory" style="swimlane;fontStyle=1;align=left;horizontal=1;startSize=30;rounded=1;arcSize=12;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="820" y="640" width="300" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell18-body" value="PK: (book_id, category_id)
+FK: book_id → Book.book_id
+FK: category_id → Category.category_id
+created_at
+updated_at" style="text;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="cell18">
+          <mxGeometry x="0" y="30" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell28" value="Constraint: A Member can review a Book only once (UNIQUE member_id, book_id)." style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="420" y="770" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell19" value="1 → *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell10" target="cell11">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell20" value="1 → *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell14" target="cell15">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell21" value="1 → *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell14" target="cell16">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell22" value="1 → *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell11" target="cell15">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell23" value="1 → *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell11" target="cell16">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell24" value="* ↔ *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell11" target="cell17">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell25" value="* ↔ *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell12" target="cell17">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell26" value="* ↔ *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell11" target="cell18">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cell27" value="* ↔ *" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#444444;" edge="1" parent="1" source="cell13" target="cell18">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
