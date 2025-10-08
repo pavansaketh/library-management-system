@@ -6,7 +6,7 @@ from sqlalchemy import (
     String,
     Text,
     DateTime,
-    JSON as SA_JSON,
+    JSON,
     create_engine,
     UniqueConstraint,
     func,
@@ -62,7 +62,7 @@ class Book(Base):
     subjects = Column(SA_JSON, nullable=True)     
     isbn = Column(String(100), nullable=True, index=True)
     description = Column(Text, nullable=True)
-    raw = Column(SA_JSON, nullable=True)           
+    raw = Column(JSON, nullable=True)           
 
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
