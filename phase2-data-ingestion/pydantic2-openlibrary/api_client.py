@@ -10,11 +10,6 @@ class OpenLibraryClient:
     BASE = "https://openlibrary.org"
 
     def __init__(self, rate_limit_seconds: float = 1.0, timeout: float = 10.0, max_retries: int = 3):
-        """
-        :param rate_limit_seconds: pause between requests (1.0 recommended)
-        :param timeout: request timeout (seconds)
-        :param max_retries: number of retries for transient errors
-        """
         self.rate_limit_seconds = rate_limit_seconds
         self.timeout = timeout
         self.max_retries = max_retries
@@ -63,13 +58,11 @@ class OpenLibraryClient:
         return self._request(path, params=params)
 
     def get_author_works(self, author_key: str, limit: int = 50, offset: int = 0) -> Dict[str, Any]:
-        # author_key is like 'OL23919A'
         path = f"/authors/{author_key}/works.json"
         params = {"limit": limit, "offset": offset}
         return self._request(path, params=params)
 
     def get_work_detail(self, work_key: str) -> Dict[str, Any]:
-        # Remove leading/trailing slashes and split by '/'
         key = work_key.strip().rstrip("/").split("/")[-1]
         path = f"/works/{key}.json"
         return self._request(path)
