@@ -19,7 +19,6 @@ logger = logging.getLogger("api_fetcher")
 
 
 def get_author_key(client: OpenLibraryClient, author_name: str) -> str:
-    """Find author key from the Open Library API."""
     data = client.search_authors(author_name)
     docs = data.get("docs", [])
     if not docs:
@@ -30,7 +29,6 @@ def get_author_key(client: OpenLibraryClient, author_name: str) -> str:
 
 
 def fetch_books(client: OpenLibraryClient, author_key: str, limit: int):
-    """Fetch works (books) for a given author."""
     data = client.get_author_works(author_key, limit=limit)
     return data.get("entries", [])
 
