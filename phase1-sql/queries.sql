@@ -21,7 +21,7 @@ LEFT JOIN Library l ON b.library_id = l.library_id
 ORDER BY b.title;
 
 
--- MOST BORROWED BOOKS IN THE LAST 30 DAYS (simple COUNT)
+-- MOST BORROWED BOOKS IN THE LAST 30 DAYS
 
 SELECT
   b.book_id,
