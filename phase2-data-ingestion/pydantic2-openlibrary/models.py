@@ -1,4 +1,3 @@
-# models_mysql.py
 from typing import List, Optional, Any, Dict
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import (
@@ -16,7 +15,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import datetime
 import json
 
-# === Pydantic Schemas (unchanged) ===
+
 class AuthorSearchDoc(BaseModel):
     key: str
     name: str
@@ -49,7 +48,6 @@ class WorkDetail(BaseModel):
     def set_raw(cls, v, values, **kwargs):
         return v or {k: values.get(k) for k in values.keys()}
 
-# === SQLAlchemy ORM ===
 
 Base = declarative_base()
 
@@ -60,21 +58,21 @@ class Book(Base):
     title = Column(String(1000), nullable=False)
     authors = Column(String(1000), nullable=True)
     first_publish_date = Column(String(50), nullable=True)
-    # Use native JSON if your MySQL supports it. Otherwise keep TEXT.
-    subjects = Column(SA_JSON, nullable=True)          # stores JSON array
+
+    subjects = Column(SA_JSON, nullable=True)     
     isbn = Column(String(100), nullable=True, index=True)
     description = Column(Text, nullable=True)
-    raw = Column(SA_JSON, nullable=True)               # native JSON column
-    # created_at server-side default:
+    raw = Column(SA_JSON, nullable=True)           
+
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
     __table_args__ = (
         UniqueConstraint("isbn", name="uq_books_isbn"),
     )
 
-# DB helper
+
 def get_engine(database_url: str):
-    # Example: mysql+pymysql://user:pass@host:3306/dbname
+
     return create_engine(
         database_url,
         echo=False,
