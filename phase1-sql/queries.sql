@@ -109,7 +109,7 @@ JOIN Borrowing br ON m.member_id = br.member_id
 GROUP BY m.member_id
 HAVING COUNT(br.borrowing_id) > 2;
 
--- 7) CTE (Common Table Expression) + simple WINDOW function example
+-- 7) CTE (Common Table Expression)
 WITH borrow_counts AS (
   SELECT book_id, COUNT(*) AS total_borrows
   FROM Borrowing
