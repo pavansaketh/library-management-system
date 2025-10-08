@@ -36,16 +36,12 @@ class OpenLibraryClient:
                 if resp.status_code == 200:
                     return resp.json()
                 elif 500 <= resp.status_code < 600:
-                    # server errors: retry
                     logger.warning("Server error %s on %s (attempt %d)", resp.status_code, url, attempt)
                 else:
-                    # client error - no retry
                     logger.error("HTTP error %s for %s: %s", resp.status_code, url, resp.text[:400])
                     resp.raise_for_status()
             except requests.RequestException as e:
                 logger.warning("RequestException for %s (attempt %d): %s", url, attempt, e)
-                # fall through to retry logic
-            # retry/backoff
             if attempt >= self.max_retries:
                 raise RuntimeError(f"Failed to fetch {url} after {self.max_retries} attempts")
             backoff = 0.5 * attempt
