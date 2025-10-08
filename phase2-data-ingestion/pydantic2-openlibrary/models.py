@@ -59,7 +59,7 @@ class Book(Base):
     authors = Column(String(1000), nullable=True)
     first_publish_date = Column(String(50), nullable=True)
 
-    subjects = Column(SA_JSON, nullable=True)     
+    subjects = Column(JSON, nullable=True)     
     isbn = Column(String(100), nullable=True, index=True)
     description = Column(Text, nullable=True)
     raw = Column(JSON, nullable=True)           
